@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <title>vue</title>
+</head>
+<body>
+    <div id="app">
+        {{ test1 }}
+        <br>
+        {{ test2 }}
+        <br>
+        <input type="text" v-model="test1" />
+        <br>
+        多选框的值：{{ checkbox }}
+        <br>
+        <input type="checkbox" v-model="checkbox">
+        <br>
+        <textarea v-model="test1" cols="30" rows="10"></textarea>
+        <ul>
+            <li v-for="k in arr">
+                {{k}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="item in arr1">
+                姓名：{{ item.name }}
+                <br>
+                年龄： {{ item.age }}
+                <br>
+                性别：{{ item.sex }}
+            </li>
+        </ul>
+        姓名：
+        <input type="text" v-model="info.name" />
+        <br>
+        年龄：
+        <input type="text" v-model="info.age" />
+        <br>
+        性别：
+        <input type="text" v-model="info.sex" />
+        <br>
+        <button @click="send">添加</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                test1: "第一个 Vue 实例",
+                test2: "测试",
+                checkbox: true,
+                arr: ["张三", "李四", "王五"],
+                arr1: [{
+                    name: "张三",
+                    age: "21",
+                    sex: "男"
+                },{
+                    name: "凤姐",
+                    age: "42",
+                    sex: "女"
+                }],
+                info: {
+                    name: "",
+                    age: "",
+                    sex: ""
+                }
+            },
+            methods: {
+                send() {
+                    console.log(this.info);
+                }
+            }
+        });
+        console.log(vm)
+    </script>
+</body>
+</html>
