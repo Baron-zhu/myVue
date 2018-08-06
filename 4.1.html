@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <title>Vue 事件</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="num">
+
+        <button type="button" @click="run(title,$event)">点击事件</button>
+        <div v-if="num==0">内容区域一</div>
+        <div v-else-if="num==1">内容区域二</div>
+        <div v-else>内容区域三</div>
+        <div :style="{border:'10px solid red',background: 'blue'}">content</div>
+
+        <ul>
+            <li v-for="item in chats">
+                {{item}}
+            </li>
+        </ul>
+        <input type="text" v-model="val" @keydown.13="send">
+        <button type="button" >发送</button> -->
+
+        <!-- computed 计算 -->
+        结果： {{ count }}
+        <input type="text" v-model.number="num">
+        <div class="input">
+            请输入您的邮箱地址：
+            <input type="text" v-model="email">
+            <ul>
+                <li v-for="item in emailList">
+                    {{ item }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                title: "标题",
+                num: 0,
+                chats: [],
+                val: "",
+                email: "",
+            },
+            methods: {
+                run (e,a) {
+                    console.log(this.$el);
+                },
+                send () {
+                    this.chats.push(this.val)
+                    this.val = ""
+                }
+            },
+            computed: {
+                count () {
+                    return this.num + 10;
+                },
+                emailList () {
+                    if (/@/.test(this.email)) return [];
+                    return [
+                        this.email + "@qq.com",
+                        this.email + "@gmail.com",
+                        this.email + "@163.com"
+                    ]
+                }
+            }
+        })
+    </script>
+</body>
+</html>

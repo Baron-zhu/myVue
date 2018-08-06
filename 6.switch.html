@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <title>Switch 组件</title>
+    <style>
+        .switch {
+            width: 60px;
+            height: 24px;
+            border-radius: 28px;
+            border: 2px solid #cccccc;
+            background: #cccccc;
+            position: relative;
+            color: #ffffff;
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 12px;
+            line-height: 24px;
+        }
+        .switch.large {
+            width: 80px;
+            height: 30px;
+            vertical-align: middle;
+            font-size: 16px;
+            line-height: 30px;
+        }
+        .switch.small {
+            width: 40px;
+            height: 16px;
+            line-height: 16px;
+            font-size: 9px;
+        }
+        .switch.opened {
+            border-color: orange;
+            background: orange;
+            transition: all .2s linear;
+        }
+        .switch-bar {
+            width: 24px;
+            height: 24px;
+            border-radius: 24px;
+            background: #ffffff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all .2s linear;
+        }
+        .switch-bar.large {
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+        }
+        .switch-bar.small {
+            width: 16px;
+            height: 16px;
+            border-radius: 16px;
+        }
+        .switch-bar.small.opened {
+            left: 24px;
+        }
+        .switch-bar.opened.large {
+            left: 50px;
+        }
+        .switch-bar.opened {
+            left: 36px;
+        }
+        .start {
+            float: left;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            padding-left: 2px;
+        }
+        .end {
+            float: left;
+            width: calc(100% - 2px);
+            height: 100%;
+            text-align: right;
+            padding-right: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        Vue.component("i-Switch", {
+            props: {
+                value: Boolean,
+                size: String,
+                bgcolor: String,
+                start: String,
+                end: String
+            },
+            template: `
+                <div class="switch" :class="{opened: ivalue, large: size === 'large', small: size === 'small'}" @click="ivalue = !ivalue">
+                    <div v-show="ivalue" class="start">{{start}}</div>
+                    <div class="switch-bar" :class="{opened: ivalue, large: size === 'large', small: size === 'small'}"></div>
+                    <div v-show="!ivalue" class="end">{{end}}</div>
+                </div>
+            `,
+            data() {
+                return {
+                    ivalue: this.value
+                }
+            },
+            watch: {
+                value(newVal) {
+                    this.ivalue = newVal
+                },
+                ivalue(newVal) {
+                    this.$emit("input", newVal)
+                }
+            }
+        })
+        var vm = new Vue({
+            el: "#app",
+            template: `
+                <div class="app">
+                    {{ test }}
+                    <i-Switch v-model="test" start="ON" end="OFF" />
+                    <i-Switch v-model="test" size="large"  start="ON" end="OFF" />
+                    <i-Switch v-model="test" size="small"  start="ON" end="OFF" />
+                    <input type="checkbox" v-model="test" />
+                </div>
+            `,
+            data: {
+                test: false
+            }
+
+        })
+    </script>
+</body>
+
+</html>

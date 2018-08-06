@@ -19,9 +19,12 @@
         }
         .header .item {
             float: left;
-            margin: 0 10px;
+            padding: 0 10px;
             text-align: center;
             cursor: pointer;
+        }
+        .header .item.active {
+            background: orange;
         }
     </style>
 </head>
@@ -53,7 +56,7 @@
         <!-- tab 选项卡 -->
         <div class="tab">
             <div class="header">
-                <div class="item" v-for="(item,index) in arr1" @click="tabIndex = index">
+                <div class="item" :class="{active:tabIndex == index}" v-for="(item,index) in arr1" @click="tabIndex = index">
                     {{ item.name }}
                 </div>
             </div>
@@ -126,7 +129,7 @@
                 }
             }
         });
-        console.log(vm)
+        // console.log(vm)
     </script>
 </body>
 </html>
