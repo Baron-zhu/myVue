@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <title>slot 插槽</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        Vue.component("Input", {
+            template: `
+                <div class="input">
+                    <slot name="before" :value="value"></slot>
+                    <input type="text" v-model="value" />
+                    <slot name="after"></slot>
+                </div>
+            `,
+            data() {
+                return {
+                    value: ""
+                }
+            },
+        });
+
+        Vue.component("Table", {
+            props: {
+                header: {
+                    type: Array,
+                    default: []
+                },
+                data: {
+                    type: Array,
+                    default: []
+                },
+                tbody: Boolean
+            },
+            template: `
+                <table>
+                    <thead>
+                        <th v-for="item in header"> {{ item }} </th>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in data">
+                            <slot name="tbody" :item="item"></slot>
+                        </tr>
+                        <tr v-if="!tbody" v-for="item in data">
+                            <td> {{ item.name }} </td>
+                            <td> {{ item.age }} </td>
+                            <td> {{ item.address }} </td>
+                            <td>
+                                <button type="button">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            `,
+        })
+        var vm = new Vue({
+            el: "#app",
+            template: `
+                <div class="app">
+                    <Input>
+                        <template slot="before" slot-scope="a">
+                            {{ a.value }}
+                        </template>
+                        <template slot="after"></template>
+                    </Input>
+
+                    <Table :header="header" :data="data" tbody>
+                        <template slot="tbody" slot-scope="{ item }">
+                            <td>{{item.name}}</td>
+                            <td>{{item.age}}</td>
+                            <td>{{item.address}}</td>
+                            <td><button @click="del(item)">删除</button></td>
+                        </template>
+                    </Table>
+                </div>
+            `,
+            methods: {
+                del(item) {
+                    let index = this.data.indexOf(item);
+                    this.data.splice(index,1)
+                }
+            },
+            data:{
+                header:['Name','Age','Address','操作'],
+                data:[
+                    {
+                        name:"John Brown",
+                        age:"18",
+                        address:"New York No. 1 Lake Park"
+                    },
+                    {
+                        name:"Jim Green",
+                        age:"24",
+                        address:"London No. 1 Lake Park"
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

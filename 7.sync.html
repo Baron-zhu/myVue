@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+    <title>.sync 修饰符</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        Vue.component("Input", {
+            props: {
+                model: String
+            },
+            template: `
+                <div class="input">
+                    <input type="text" v-model="iVal" />
+                </div>
+            `,
+            data() {
+                return {
+                    iVal: this.model
+                }
+            },
+            watch: {
+                model (newVal) {
+                    this.iVal = newVal
+                },
+                iVal (newVal) {
+                    this.$emit("update:model",newVal)
+                }
+            }
+        });
+        var vm = new Vue({
+            el: "#app",
+            template: `
+                <div class="app">
+                    vue 实例：<input type="text" v-model="pInput" />
+                    <br />
+                    组件：<Input :model.sync="pInput" />
+                </div>
+            `,
+            data: {
+                pInput: "100"
+            }
+        })
+    </script>
+</body>
+
+</html>
