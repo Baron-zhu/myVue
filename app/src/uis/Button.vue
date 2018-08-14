@@ -1,5 +1,5 @@
 <template>
-    <button class="btn" :class="['btn-'+type,{long:long}]" >
+    <button class="btn" @click="$emit('click')" :disabled="disabled" :class="['btn-'+type,{long:long}]" >
         <slot>{{type}}</slot>
     </button>
 </template>
@@ -12,7 +12,8 @@
                 type: String,
                 required: true
             },
-            long: Boolean
+            long: Boolean,
+            disabled: Boolean
         }
     }
 </script>
@@ -30,7 +31,6 @@
     }
     .btn {
         border: none;
-        margin: 5px 0;
         padding: 8px 10px;
         &.btn-disabled {
             .render(4px,@Disabled);

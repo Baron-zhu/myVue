@@ -7,8 +7,28 @@ import App from './App'
 // import iview from 'iview';
 // import 'iview/dist/styles/iview.css';
 // import Button from "./uis/Button.vue";
+import "./assets/animate.css";
 import Uis from "./uis";
 Vue.use(Uis,{xx:1});
+Vue.mixin({
+  data () {
+    return {
+      a: 100
+    }
+  }
+});
+Vue.directive("focus",{
+  bind(el) {
+    console.log("bind");
+    console.dir(el);
+  },
+  inserted(el,binding) {
+    console.log("inserted");
+    if(binding.value) {
+      el.focus();
+    }
+  }
+})
 // Vue.use(iview);
 Vue.config.productionTip = false
 
