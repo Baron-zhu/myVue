@@ -1,7 +1,7 @@
 <template>
-    <div>
-        车汇
-    </div>
+    <Content scrollY scrollX>
+        <h1>Club</h1>
+    </Content>
 </template>
 
 <script>

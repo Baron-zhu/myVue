@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutRight">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -10,6 +12,15 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="less" scoped>
+@import './assets/less/var.less';
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header {
+    .height(103rem);
+    background: #ff88bb;
+  }
 </style>

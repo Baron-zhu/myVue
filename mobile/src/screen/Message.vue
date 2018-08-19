@@ -1,7 +1,7 @@
 <template>
-    <div>
-        消息
-    </div>
+    <Content scrollY scrollX>
+        <h1>Message</h1>
+    </Content>
 </template>
 
 <script>

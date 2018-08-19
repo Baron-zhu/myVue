@@ -1,7 +1,7 @@
 <template>
-    <div>
-        我的
-    </div>
+    <Content scrollY scrollX>
+        <h1>Mine</h1>
+    </Content>
 </template>
 
 <script>
