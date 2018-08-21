@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import TabHome from '@/screen/Tab';
 import NewsDetail from '@/screen/NewsDetail';
 
+
 Vue.use(Router)
 
 export default new Router({

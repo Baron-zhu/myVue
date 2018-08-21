@@ -1,7 +1,6 @@
 <template>
     <div class="car-content" :class="{'car-content-scroll-x':scrollX,'car-content-scroll-y':scrollY}">
         <slot></slot>
-
     </div>
 </template>
 

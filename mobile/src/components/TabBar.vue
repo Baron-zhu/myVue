@@ -39,7 +39,7 @@
 <style lang="less" scoped>
     @import "../assets/less/var.less";
     .car-tabbar {
-        .height(150rem);
+        .height(110rem);
         border-top: 1px solid @tabbar-border-color;
         display: flex;
         box-sizing: border-box;
@@ -52,7 +52,7 @@
             align-items: center;
             text-align: center;
             .car-tabbar-item-icon {
-                .width(60rem);
+                .width(50rem);
                 img {
                     max-width: 100%;
                 }
@@ -61,7 +61,7 @@
                 &.active {
                     color: @primary;
                 }
-                .font-size(16em);
+                .font-size(12em);
             }
         }
     }

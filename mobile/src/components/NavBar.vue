@@ -25,7 +25,7 @@
 <style lang="less" scoped>
     @import '../assets/less/var.less';
     .car-navbar {
-        .height(103rem);
+        height: 50px;
         background: @primary;
         color: @navbar-color;
         display: flex;

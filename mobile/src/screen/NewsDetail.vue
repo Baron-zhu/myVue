@@ -6,7 +6,7 @@
             </template>
         </NavBar>
         <Content>
-            NewsDetail
+            <News :data="data" />
         </Content>
     </Screen>
 </template>
@@ -15,6 +15,21 @@
     import Button from '@/components/Button';
     export default {
         name: "NewsDetail",
+        data() {
+            return {
+                data: []
+            }
+        },
+        created(){
+            // console.log(this.$route);
+            this.data = [this.$route.params.item]
+        },
+        // watch: {
+        //     $route(to, from) {
+        //         console.log(to);
+                
+        //     }
+        // },
         components: {
             Button
         }

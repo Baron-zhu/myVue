@@ -7,10 +7,13 @@ import 'amfe-flexible/index'
 import './assets/styles/normalize.css'
 import './assets/styles/animate.css'
 import Cpts from '@/components/index'
-
+import VueTouch from 'vue-touch'
+import axios from 'axios'
 Vue.config.productionTip = false
 
 Vue.use(Cpts)
+Vue.use(VueTouch)
+Vue.prototype.$axios = axios;
 let width = window.innerWidth / 10;
 document.documentElement.style.fontSize = width + 'px';
 /* eslint-disable no-new */

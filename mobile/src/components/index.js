@@ -2,11 +2,17 @@ import NavBar from './NavBar';
 import Screen from './Screen';
 import Content from './Content';
 import TabBar from './TabBar';
+import News from './News';
+import Avatar from './Avatar';
+import Icon from './Icon';
 const components = {
     NavBar,
     Screen,
     Content,
-    TabBar
+    TabBar,
+    Avatar,
+    Icon,
+    News
 }
 
 export default {
